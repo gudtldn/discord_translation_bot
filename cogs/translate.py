@@ -21,7 +21,7 @@ class Translate(commands.Cog):
             )
         ]
         for menu in self.ctx_menu:
-            self.bot.tree.add_command(menu, guilds=self.bot.guild_ids)
+            self.bot.tree.add_command(menu)
 
     def get_text(self, msg: discord.Message) -> str:
         if msg.author.id == self.bot.user.id and msg.embeds:
