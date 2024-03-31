@@ -29,8 +29,7 @@ class Bot(commands.Bot):
                 await self.load_extension(f"cogs.{filename[:-3]}")
 
         await self.tree.set_translator(Translation())
-        for guild in self.guilds:
-            await self.tree.sync(guild=guild.id)
+        await self.tree.sync()
 
     async def on_ready(self):
         self.change_status.start()
