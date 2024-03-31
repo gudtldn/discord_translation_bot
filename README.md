@@ -1,6 +1,6 @@
 # discord_translation_bot
 
-<a title="서버에 봇 추가하기" href="https://discord.com/oauth2/authorize?client_id=980743221648949288" target="_blank">![Discord Application Invite](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white)</a>
+[![Discord Application Invite](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=980743221648949288 "서버에 봇 추가하기")
 
 서버에서 메시지를 쉽게 번역하기 위해 만든 봇 입니다.
 
