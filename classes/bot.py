@@ -20,7 +20,7 @@ class Bot(commands.Bot):
             command_prefix=".",
             help_command=None,
             status=discord.Status.online,
-            intents=discord.Intents.all()
+            intents=discord.Intents.default()
         )
 
     async def setup_hook(self):
