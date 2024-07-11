@@ -23,14 +23,22 @@ class Translate(commands.Cog):
         for menu in self.ctx_menu:
             self.bot.tree.add_command(menu)
 
-    def get_text(self, msg: discord.Message) -> str:
+    def get_text(self, msg: discord.Message) -> str | None:
         if msg.author.id == self.bot.user.id and msg.embeds:
             return msg.embeds[0].fields[1].value
-        return msg.content
+        return msg.content or None
 
 
     async def menu_immediate_translation(self, interaction: discord.Interaction, msg: discord.Message):
-        msg_content = self.get_text(msg)
+        if (msg_content := self.get_text(msg)) is None:
+            await interaction.response.send_message(
+                content=await interaction.translate(
+                    string="알 수 없는 언어",
+                    locale=interaction.locale
+                ),
+                ephemeral=True
+            )
+            return
 
         target_lang = Locale.from_str(interaction.locale.value)
         result = self.bot.deepl.translation_lang(
@@ -94,7 +102,15 @@ class Translate(commands.Cog):
             await _interaction.response.edit_message(content=None, embed=embed, view=None)
 
 
-        msg_content = self.get_text(msg)
+        if (msg_content := self.get_text(msg)) is None:
+            await interaction.response.send_message(
+                content=await interaction.translate(
+                    string="알 수 없는 언어",
+                    locale=interaction.locale
+                ),
+                ephemeral=True
+            )
+            return
 
         detected_lang = self.bot.deepl.detect_lang(msg_content)
 
